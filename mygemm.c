@@ -10,12 +10,25 @@
 //Register Reuse part 1
 void dgemm0(const double* A, const double* B, double* C, const int n)
 {
-
+  /*dgemm0: simple ijk version triple loop algorithm*/
+  for (i=0; i<n; i++) //{
+    for (j=0; j<n; j++) //{
+      for (k=0; k<n; k++) //{
+        c[i*n+j] += a[i*n+k] * b[k*n+j]; 
+      //}
+    //}
+  //}
 }
 
 void dgemm1(const double *A, const double *B, double *C, const int n) 
 {
-
+  for (i=0; i<n; i++)
+    for (j=0; j<n; j++) {
+      register double r = c[i*n+j] ;
+      for (k=0; k<n; k++)
+        r += a[i*n+k] * b[k*n+j];
+      c[i*n+j] = r;
+    }
 }
 //Register Reuse part 1 End
 
