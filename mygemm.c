@@ -88,7 +88,15 @@ void dgemm3(const double *A, const double *B, double *C, const int n)
 //Cache Reuse part 3
 void ijk(const double *A, const double *B, double *C, const int n) 
 {
-
+  int i, j , k = 0;
+  for (i=0; i<n; i++)  {
+    for (j=0; j<n; j++) {
+      double sum = 0.0;
+      for (k=0; k<n; k++) 
+        sum += A[i][k] * B[k][j];
+      C[i][j] = sum;
+    }
+  } 
 }
 
 void bijk(const double *A, const double *B, double *C, const int n, const int b) 
