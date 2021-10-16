@@ -11,6 +11,7 @@
 void dgemm0(const double* A, const double* B, double* C, const int n)
 {
   /*dgemm0: simple ijk version triple loop algorithm*/
+  int i, j, k = 0;
   for (i=0; i<n; i++) {
     for (j=0; j<n; j++) {
       for (k=0; k<n; k++) {
@@ -22,6 +23,7 @@ void dgemm0(const double* A, const double* B, double* C, const int n)
 
 void dgemm1(const double *A, const double *B, double *C, const int n) 
 {
+  int i, j, k = 0;
   for (i=0; i<n; i++)
     for (j=0; j<n; j++) {
       register double r = c[i*n+j] ;
