@@ -102,15 +102,15 @@ void ijk(const double *A, const double *B, double *C, const int n)
 void bijk(const double *A, const double *B, double *C, const int n, const int b) 
 {
   int i, j, k = 0;
-  for (i = 0; i < n; i+=B) {
-    for (j = 0; j < n; j+=B) {
-      for (k = 0; k < n; k+=B) {
+  for (i = 0; i < n; i+=b) {
+    for (j = 0; j < n; j+=b) {
+      for (k = 0; k < n; k+=b) {
       /* B x B mini matrix multiplications */
-        for (i1 = i; i1 < i+B; i1++)
-          for (j1 = j; j1 < j+B; j1++) {
+        for (i1 = i; i1 < i+b; i1++)
+          for (j1 = j; j1 < j+b; j1++) {
             register double r=C[i1*n+j1];
-            for (k1 = k; k1 < k+B; k1++)
-              r += a[i1*n + k1]*b[k1*n + j1];
+            for (k1 = k; k1 < k+b; k1++)
+              r += A[i1*n + k1]*B[k1*n + j1];
             C[i1*n+j1]=r;
           }
 }
