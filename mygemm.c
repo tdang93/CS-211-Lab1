@@ -102,9 +102,9 @@ void ijk(const double *A, const double *B, double *C, const int n)
 void bijk(const double *A, const double *B, double *C, const int n, const int b) 
 {
   int i, j, k = 0;
-  for (i = 0; i < n; i+=b) {
-    for (j = 0; j < n; j+=b) {
-      for (k = 0; k < n; k+=b) {
+  for (i = 0; i < n; i+=b)
+    for (j = 0; j < n; j+=b)
+      for (k = 0; k < n; k+=b)
       /* B x B mini matrix multiplications */
         for (i1 = i; i1 < i+b; i1++)
           for (j1 = j; j1 < j+b; j1++) {
@@ -130,7 +130,18 @@ void jik(const double *A, const double *B, double *C, const int n)
 
 void bjik(const double *A, const double *B, double *C, const int n, const int b) 
 {
-
+  int i, j, k = 0;
+  for (j = 0; j < n; j+=b)
+    for (i = 0; i < n; i+=b)
+      for (k = 0; k < n; k+=b)
+      /* B x B mini matrix multiplications */
+        for (j1 = j; j1 < j+b; j1++)
+          for (i1 = i; i1 < i+b; i1++) {
+            register double r=C[i1*n+j1];
+            for (k1 = k; k1 < k+b; k1++)
+              r += A[i1*n + k1]*B[k1*n + j1];
+            C[i1*n+j1]=r;
+          }
 }
 
 void kij(const double *A, const double *B, double *C, const int n) 
@@ -147,7 +158,17 @@ void kij(const double *A, const double *B, double *C, const int n)
 
 void bkij(const double *A, const double *B, double *C, const int n, const int b) 
 {
-
+  int i, j, k = 0;
+  for (k = 0; k < n; k+=b)
+    for (i = 0; i < n; i+=b)
+      for (j = 0; j < n; j+=b)
+      /* B x B mini matrix multiplications */
+        for (k1 = k; k1 < k+b; k1++)
+          for (i1 = i; i1 < i+b; i1++) {
+            register double r=A[i1*n+k1];
+            for (j1 = j; j1 < j+b; j1++)
+              C[i1*n+j1] += r * B[k1*n+j1];
+          }
 }
 
 
