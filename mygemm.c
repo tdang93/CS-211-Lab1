@@ -11,13 +11,13 @@
 void dgemm0(const double* A, const double* B, double* C, const int n)
 {
   /*dgemm0: simple ijk version triple loop algorithm*/
-  for (i=0; i<n; i++) //{
-    for (j=0; j<n; j++) //{
-      for (k=0; k<n; k++) //{
+  for (i=0; i<n; i++) {
+    for (j=0; j<n; j++) {
+      for (k=0; k<n; k++) {
         c[i*n+j] += a[i*n+k] * b[k*n+j]; 
-      //}
-    //}
-  //}
+      }
+    }
+  }
 }
 
 void dgemm1(const double *A, const double *B, double *C, const int n) 
@@ -35,7 +35,17 @@ void dgemm1(const double *A, const double *B, double *C, const int n)
 //Register Reuse part 2
 void dgemm2(const double *A, const double *B, double *C, const int n) 
 {
-
+  int i, j, k = 0;
+  for (i=0; i<n; i+=2) {
+    for (j=0; j<n; j+=2) {
+      for (k=0; k<n; k+=2) {
+        c[i*n+j] = a[i*n+k] * b[k*n+j] + a[i*n+k+1] * b[(k+1)*n+j] + c[i*n+j];
+        c[(i+1)*n+j] = a[(i+1)*n+k] * b[k*n+j] + a[(i+1)*n+k+1] * b[(k+1)*n+j] + c[(i+1)*n+j];
+        c[i*n+(j+1)] = a[i*n+k] * b[k*n+(j+1)] + a[i*n+k+1] * b[(k+1)*n+(j+1)] + c[(i*n+(j+1)];
+        c[(i+1)*n+(j+1)] = a[(i+1)*n+k)] * b[k*n+(j+1)] + a[(i+1)*n+k+1] * b[(k+1)*n+(j+1)] + c[(i+1)*n+(j+1)];
+      }
+    }
+  }
 }
 //Register Reuse part 2 End
 
