@@ -186,7 +186,17 @@ void ikj(const double *A, const double *B, double *C, const int n)
 
 void bikj(const double *A, const double *B, double *C, const int n, const int b) 
 {
-
+  int i, j, k = 0;
+  for (i = 0; i < n; i+=b)
+    for (k = 0; k < n; k+=b)
+      for (j = 0; j < n; j+=b)
+      /* B x B mini matrix multiplications */
+        for (i1 = i; i1 < i+b; i1++)
+          for (k1 = k; k1 < k+b; k1++) {
+            register double r=A[i1*n+k1];
+            for (j1 = j; j1 < j+b; j1++)
+              C[i1*n+j1] += r * B[k1*n+j1];
+          }
 }
 
 void jki(const double *A, const double *B, double *C, const int n) 
@@ -203,7 +213,17 @@ void jki(const double *A, const double *B, double *C, const int n)
 
 void bjki(const double *A, const double *B, double *C, const int n, const int b) 
 {
-
+  int i, j, k = 0;
+  for (j = 0; j < n; j+=b)
+    for (k = 0; k < n; k+=b)
+      for (i = 0; i < n; i+=b)
+      /* B x B mini matrix multiplications */
+        for (j1 = j; j1 < j+b; j1++)
+          for (k1 = k; k1 < k+b; k1++) {
+            register double r=B[k1*n+j1];
+            for (i1 = i; i1 < i+b; i1++)
+              C[i1*n+j1] += r * A[i1*n+k1];
+          }
 }
 
 void kji(const double *A, const double *B, double *C, const int n) 
@@ -220,7 +240,17 @@ void kji(const double *A, const double *B, double *C, const int n)
 
 void bkji(const double *A, const double *B, double *C, const int n, const int b) 
 {
-
+  int i, j, k = 0;
+  for (k = 0; k < n; k+=b)
+    for (j = 0; j < n; j+=b)
+      for (i = 0; i < n; i+=b)
+      /* B x B mini matrix multiplications */
+        for (k1 = k; k1 < k+b; k1++)
+          for (j1 = j; j1 < j+b; j1++) {
+            register double r=B[k1*n+j1];
+            for (i1 = i; i1 < i+b; i1++)
+              C[i1*n+j1] += r * A[i1*n+k1];
+          }
 }
 //Cache Reuse part 3 End 
 
