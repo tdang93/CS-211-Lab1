@@ -102,6 +102,7 @@ void ijk(const double *A, const double *B, double *C, const int n)
 void bijk(const double *A, const double *B, double *C, const int n, const int b) 
 {
   int i, j, k = 0;
+  int i1, j1, k1 = 0;
   for (i = 0; i < n; i+=b)
     for (j = 0; j < n; j+=b)
       for (k = 0; k < n; k+=b)
@@ -131,6 +132,7 @@ void jik(const double *A, const double *B, double *C, const int n)
 void bjik(const double *A, const double *B, double *C, const int n, const int b) 
 {
   int i, j, k = 0;
+  int i1, j1, k1 = 0;
   for (j = 0; j < n; j+=b)
     for (i = 0; i < n; i+=b)
       for (k = 0; k < n; k+=b)
@@ -159,6 +161,7 @@ void kij(const double *A, const double *B, double *C, const int n)
 void bkij(const double *A, const double *B, double *C, const int n, const int b) 
 {
   int i, j, k = 0;
+  int i1, j1, k1 = 0;
   for (k = 0; k < n; k+=b)
     for (i = 0; i < n; i+=b)
       for (j = 0; j < n; j+=b)
@@ -187,6 +190,7 @@ void ikj(const double *A, const double *B, double *C, const int n)
 void bikj(const double *A, const double *B, double *C, const int n, const int b) 
 {
   int i, j, k = 0;
+  int i1, j1, k1 = 0;
   for (i = 0; i < n; i+=b)
     for (k = 0; k < n; k+=b)
       for (j = 0; j < n; j+=b)
@@ -214,6 +218,7 @@ void jki(const double *A, const double *B, double *C, const int n)
 void bjki(const double *A, const double *B, double *C, const int n, const int b) 
 {
   int i, j, k = 0;
+  int i1, j1, k1 = 0;
   for (j = 0; j < n; j+=b)
     for (k = 0; k < n; k+=b)
       for (i = 0; i < n; i+=b)
@@ -241,6 +246,7 @@ void kji(const double *A, const double *B, double *C, const int n)
 void bkji(const double *A, const double *B, double *C, const int n, const int b) 
 {
   int i, j, k = 0;
+  int i1, j1, k1 = 0;
   for (k = 0; k < n; k+=b)
     for (j = 0; j < n; j+=b)
       for (i = 0; i < n; i+=b)
