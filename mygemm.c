@@ -44,7 +44,7 @@ void dgemm2(const double *A, const double *B, double *C, const int n)
       for (k=0; k<n; k+=2) {
         C[i*n+j] = A[i*n+k] * B[k*n+j] + A[i*n+k+1] * B[(k+1)*n+j] + C[i*n+j];
         C[(i+1)*n+j] = A[(i+1)*n+k] * B[k*n+j] + A[(i+1)*n+k+1] * B[(k+1)*n+j] + C[(i+1)*n+j];
-        C[i*n+(j+1)] = A[i*n+k] * B[k*n+(j+1)] + A[i*n+k+1] * B[(k+1)*n+(j+1)] + C[(i*n+(j+1)];
+        C[i*n+(j+1)] = A[i*n+k] * B[k*n+(j+1)] + A[i*n+k+1] * B[(k+1)*n+(j+1)] + C[i*n+(j+1)];
         C[(i+1)*n+(j+1)] = A[(i+1)*n+k)] * B[k*n+(j+1)] + A[(i+1)*n+k+1] * B[(k+1)*n+(j+1)] + C[(i+1)*n+(j+1)];
       }
     }
